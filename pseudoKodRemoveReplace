@@ -1,0 +1,60 @@
+remove(e)
+	k <-- heapArray(size-1)
+	size--
+	position <-- e.position // Ta bort e ur #-tabellen
+	heapArray(position) <-- k // Uppdatera k i#-tabellen
+	BubbleSort(position, e.getKey)
+
+replaceKey(e, k)
+	position <-- e.position
+	oldKey <-- e.key
+	e.key <-- k
+	BubbleSort(position, oldKey)
+
+BubbleSort(position, oldKey) // För minsta elementet överst
+	e <-- heapArray(position)
+	key <-- e.getKey
+	if key < oldKey
+		BubbleSortUp(position, key)
+	else if key > oldKey
+		BubbleSortDown(position, key)
+	fi
+	return
+
+BubbleSortUp(position, key)
+	if position == 0
+		return
+	fi
+	if "position.parent".getKey =< key
+		return
+	fi
+	changePlace(position, "position.parent")
+	BubbleSortUp("position.parent", key)
+	 // är osäker på vad jag ska ange för position
+	return
+
+BubbleSortDown(position, key)
+	if position == 0
+		return
+	fi
+	if "position.leftChild".getKey =< "position.rightChild".getKey
+		if "position.leftChild".getKey > key
+			return
+		fi
+		changePlace(position, "position.leftChild")
+		BubbleSortDown("posistion.leftChild", key)
+		// återigen, osäker på argumenten
+		return
+	fi
+	if "position.rightChild".getKey >= key
+		return
+	fi
+	changePlace(position, "position.rightChild")
+	BubbleSortDown("position.rightChild", key)
+	return
+
+changePlace(firstP, secondP)
+	// jag tror det borde vara något i stil med det här
+	temp = tree[secondP]
+	tree[secondP] = tree[firstP]
+	tree[firstP] = temp
