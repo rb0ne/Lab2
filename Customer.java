@@ -1,19 +1,22 @@
 
 public class Customer {
 	String customerName;
-	int customerKey;
+	int customerValue;
 	
-	public Customer(String name, int key){
+	public Customer(String name, int value){
 		customerName = name;
-		customerKey = key;
+		customerValue = value;
 	}
 	public String getName(){
 		return customerName;
 	}
-	public int getKey(){
-		return customerKey;
+	public int getPrice(){
+		return customerValue;
 	}
-	public void setKet(int newKey){
-		customerKey = newKey;
+	public void setPrice(int newValue){
+		customerValue = newValue;
+	}
+	public String toString() {
+		return customerName + "\t" + customerValue;
 	}
 }
