@@ -17,6 +17,6 @@ public class Customer {
 		customerValue = newValue;
 	}
 	public String toString() {
-		return customerName + "\t" + customerValue;
+		return customerName + " " + customerValue;
 	}
 }

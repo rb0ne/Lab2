@@ -10,6 +10,7 @@ public class StockExchange {
 		int price2;
 		int numberOfBuyers = 0;
 		int numberOfSellers = 0;
+		boolean file = true;
 
 		Heap buyersHeap = new Heap(true);
 		Heap sellersHeap = new Heap(false);
@@ -26,13 +27,20 @@ public class StockExchange {
 			}
 		} else {
 			sc = new Scanner(System.in);
+			file = false;
 		}
 		while (true) {
-			System.out.println("What do you want to do: ");
-			// HŠr ska nŒgon form av felhantering lŠggas in. DONE!
+			if (!file) {
+				System.out.println("What do you want to do: ");
+			}
 			if (sc.hasNext()) {
 				name = sc.next();
 			} else {
+				System.out.println("Order book: ");
+				System.out.println("Buyers: ");
+				buyersHeap.printMe();
+				System.out.println("Sellers: ");
+				sellersHeap.printMe();
 				return;
 			}
 			if (sc.hasNext()) {
@@ -79,30 +87,29 @@ public class StockExchange {
 				}
 
 			} else if (action.equalsIgnoreCase("NS")) {
-				price2 = sc.nextInt();
-				if (sellersHeap.hashMap.hasName(name)) {
-					if (sellersHeap.getPrice(sellersHeap.getPosition(name)) == price1) {
-						sellersHeap.change(name, price1, price2);
+				if (sc.hasNextInt()) {
+					price2 = sc.nextInt();
+					if (sellersHeap.hashMap.hasName(name)) {
+						if (sellersHeap.getPrice(sellersHeap.getPosition(name)) == price1) {
+							sellersHeap.change(name, price1, price2);
+						} else {
+							System.out
+									.println("The old price must be accurate");
+						}
 					} else {
-						System.out.println("The old price must be accurate");
+						System.out
+								.println("There exist no bids from the person you have given.");
 					}
 				} else {
 					System.out
-							.println("There exist no bids from the person you have given.");
+							.println("You must state the old price and a new price.");
 				}
 			} else {
 				System.out.println("The input should be in the format:");
 				System.out.println("Name Action(S, K, NS, NK) Price "
-				   + "Price2(if Ns or NK has been given as action).");
+						+ "Price2(if Ns or NK has been given as action).");
 				continue;
 			}
-			// Skriv ut bŒda kšerna:
-			System.out.println("Kšpare: ");
-			buyersHeap.printMe();
-			System.out.println("SŠljare: ");
-			sellersHeap.printMe();
-			// kontrollera om det finns tvŒ matchande sŠlj och
-			// kšpbud DONE!
 			if (numberOfBuyers > 0 && numberOfSellers > 0) {
 				if (buyersHeap.getPrice(0) >= sellersHeap.getPrice(0)) {
 					String buyersName = buyersHeap.getName(0);
@@ -118,10 +125,7 @@ public class StockExchange {
 				}
 
 			}
-			System.out.println("Kšpare: ");
-			buyersHeap.printMe();
-			System.out.println("SŠljare: ");
-			sellersHeap.printMe();
+			
 
 		}
 	}

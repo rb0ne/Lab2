@@ -81,14 +81,11 @@ public class Heap {
 	}
 
 	private void bubbleSort(int position, int oldPrice) {
-		System.out.println("Pos: "+ position +" Price: " +oldPrice);
 		Customer element = arrayOfCustomers[position];
 		int price = element.getPrice();
 		if (order * price > order * oldPrice) {
-			System.out.println("Up");
 			bubbleSortUp(position, price);
 		} else if (order * price < order * oldPrice) {
-			System.out.println("Down");
 			bubbleSortDown(position, price);
 		}
 	}
@@ -139,8 +136,6 @@ public class Heap {
 	}
 
 	private void changePosition(int position, int newPosition) {
-		printMe();
-		System.out.println(position + "->" + newPosition);
 		Customer temp = arrayOfCustomers[newPosition];
 		String tempName = temp.getName();
 		arrayOfCustomers[newPosition] = arrayOfCustomers[position];
@@ -175,8 +170,14 @@ public class Heap {
 	}
 	
 	public void printMe(){
+		String namePrice = "";
 		for (int i = 0; i<size; i++) {
-			System.out.println(arrayOfCustomers[i]);
+			if (i > 0){
+			namePrice = namePrice + ", " +arrayOfCustomers[i];
+			} else {
+				namePrice = namePrice +arrayOfCustomers[i];
+			}
 		}
+		System.out.println(namePrice);
 	}
 }
