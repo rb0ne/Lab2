@@ -2,6 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * A program for stock exchange. Accepted indata is: from commandline and from
+ * file. Indata should be formated: NAME ACTION PRICE1 PRICE2(not needed for most actions)
+ * 
+ * @author Robin Persson Sšderholm, Andreas KŠllberg
+ * 
+ */
 public class StockExchange {
 	public static void main(String[] args) {
 		String name;
@@ -125,7 +132,6 @@ public class StockExchange {
 				}
 
 			}
-			
 
 		}
 	}
