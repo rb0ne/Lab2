@@ -1,9 +1,20 @@
+/**
+ * Heap implemented by the use of arrays.
+ * @author Robin Persson Sšderholm, Andreas KŠllberg
+ * 
+ */
+
 public class Heap {
 	int size;
 	Customer[] arrayOfCustomers;
 	Hashmap hashMap;
 	int order;
-
+	
+	/**
+	 *  Constructs a new Heap that takes it's priority order described by largestOnTop.
+	 *  
+	 * @param largestOnTop decides if larger numbers should have higher priority.
+	 */
 	public Heap(boolean largestOnTop) {
 		size = 0;
 		arrayOfCustomers = new Customer[4];
@@ -11,6 +22,12 @@ public class Heap {
 		order = largestOnTop ? 1 : -1;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param position
+	 * @return
+	 */
 	public int getPrice(int position) {
 		return arrayOfCustomers[position].getPrice();
 	}
@@ -45,16 +62,8 @@ public class Heap {
 	}
 
 	public void change(String name, int oldPrice, int newPrice) {
-		if (!hashMap.hasName(name)) {
-			// cast exception
-		}
-		// position = e.position
 		int position = hashMap.read(name);
-		if (oldPrice != arrayOfCustomers[position].getPrice()) {
-			// fel fel fel
-		}
 		arrayOfCustomers[position].setPrice(newPrice);
-		// BubbleSort (som uppdatera hashmap)
 		bubbleSort(position, oldPrice);
 
 	}
@@ -169,15 +178,17 @@ public class Heap {
 		return arrayOfCustomers[getRightChildPosition(position)] != null;
 	}
 	
+	/**
+	 * Prints all the Customers in the heap
+	 * 
+	 */
 	public void printMe(){
-		String namePrice = "";
-		for (int i = 0; i<size; i++) {
-			if (i > 0){
-			namePrice = namePrice + ", " +arrayOfCustomers[i];
-			} else {
-				namePrice = namePrice +arrayOfCustomers[i];
-			}
+		if (size >0){
+			System.out.print(arrayOfCustomers[0]);
 		}
-		System.out.println(namePrice);
+		for (int i = 0; i<size; i++) {
+			System.out.print(", " +arrayOfCustomers[i]);
+		}
+		System.out.println();
 	}
 }
