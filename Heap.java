@@ -274,11 +274,15 @@ public class Heap {
 	 */
 	public void printMe() {
 		if (size > 0) {
-			System.out.print(arrayOfCustomers[0]);
+			System.out.print(arrayOfCustomers[0].toString());
+			remove(arrayOfCustomers[0].getName());
 		}
-		for (int i = 0; i < size; i++) {
-			System.out.print(", " + arrayOfCustomers[i]);
+		int largestSize = size;
+		for (int i = 1; i < largestSize; i++) {
+			System.out.print(", " + arrayOfCustomers[0].toString());
+			remove(arrayOfCustomers[0].getName());
 		}
 		System.out.println();
 	}
+
 }
